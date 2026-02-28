@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MemWord - Web Anki for Vocabulary</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>MemWord</h1>
+      <p>An Anki-style web app to memorize words with spaced review.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="add-title">
+      <h2 id="add-title">Add New Card</h2>
+      <form id="card-form">
+        <label>
+          Word
+          <input id="word" name="word" type="text" required maxlength="80" placeholder="e.g. ephemeral" />
+        </label>
+        <label>
+          Meaning
+          <textarea id="meaning" name="meaning" required maxlength="240" placeholder="short definition or translation"></textarea>
+        </label>
+        <button type="submit">Add Card</button>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="review-title">
+      <div class="review-header">
+        <h2 id="review-title">Review</h2>
+        <div class="stats">
+          <span id="total-cards">0 cards</span>
+          <span id="due-cards">0 due</span>
+        </div>
+      </div>
+
+      <div id="review-area" class="review-area empty">
+        <p id="empty-text">No cards yet. Add your first word above.</p>
+
+        <article id="card" class="card hidden" aria-live="polite">
+          <h3 id="card-word"></h3>
+          <p id="card-meaning" class="hidden"></p>
+
+          <div id="review-controls" class="controls hidden">
+            <button id="show-answer" type="button">Show Answer</button>
+          </div>
+
+          <div id="grade-controls" class="controls hidden">
+            <button data-grade="again" type="button">Again</button>
+            <button data-grade="good" type="button">Good</button>
+            <button data-grade="easy" type="button">Easy</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="deck-title">
+      <h2 id="deck-title">Deck</h2>
+      <ul id="deck-list" class="deck-list"></ul>
+    </section>
+  </main>
+
+  <template id="deck-item-template">
+    <li class="deck-item">
+      <div>
+        <strong class="deck-word"></strong>
+        <p class="deck-meaning"></p>
+      </div>
+      <button class="delete-btn" type="button">Delete</button>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
